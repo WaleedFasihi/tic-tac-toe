@@ -1,12 +1,14 @@
 from board import Board
+from score import Score
+
+score = Score()
+board = Board(score)
 
 pieces = ["X", "O"]
 
 
 # Function to Start a New Game
 def start_game():
-    board = Board()
-
     next_turn = True
     while next_turn:
         for piece in pieces:
@@ -38,3 +40,5 @@ while is_playing:
 
     if input("Enter 'y' to Restart, 'n' to End: ").lower() != "y":
         is_playing = False
+    else:
+        board.reset_board()
