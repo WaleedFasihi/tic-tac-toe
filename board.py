@@ -2,9 +2,10 @@ import os
 from score import Score
 
 
-class Board(Score):
+class Board:
 
-    def __init__(self, score):
+    def __init__(self, score: Score):
+        self.score = score
         self.moves = 0
         self.accepted_moves = ["1", "2", "3"]
         self.grid = [
@@ -20,7 +21,7 @@ class Board(Score):
         os.system('cls')
 
         # Show Player Scores
-        print(f"Player X: {self.score_x} | Player O: {self.score_o}")
+        print(f"X: {self.score.score_x} | O: {self.score.score_o}")
 
         # Display the Grid
         for i in range(0, len(self.grid)):
@@ -87,8 +88,8 @@ class Board(Score):
 
         # Check if winner is decided or it is a draw
         if check_row or check_column or check_diag:
+            self.score.increase_score(piece)
             self.display()
-            self.increase_score(piece)
             print(f"Player {piece} Wins!")
             return True
         elif self.is_final_round():
